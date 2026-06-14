@@ -9,7 +9,7 @@ export function generateProductLD(school: School) {
     '@type': 'Product',
     name: school.name,
     description: school.description,
-    image: school.logo.url,
+    image: school.logo?.url,
     url: `${SITE_URL}/school/${school.slug}/`,
     aggregateRating: {
       '@type': 'AggregateRating',

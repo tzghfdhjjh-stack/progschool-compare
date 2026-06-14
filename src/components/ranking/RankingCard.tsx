@@ -35,15 +35,17 @@ export function RankingCard({ school }: RankingCardProps) {
 
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="relative h-8 w-28">
-              <Image
-                src={school.logo.url}
-                alt={`${school.name} ロゴ`}
-                fill
-                className="object-contain object-left"
-                sizes="112px"
-              />
-            </div>
+            {school.logo?.url && (
+              <div className="relative h-8 w-28">
+                <Image
+                  src={school.logo.url}
+                  alt={`${school.name} ロゴ`}
+                  fill
+                  className="object-contain object-left"
+                  sizes="112px"
+                />
+              </div>
+            )}
             <h2 className="font-bold text-gray-900">{school.name}</h2>
           </div>
 

@@ -66,16 +66,18 @@ export default async function SchoolDetailPage({
       />
 
       <div className="mt-4 flex items-start gap-4">
-        <div className="relative h-12 w-36 shrink-0">
-          <Image
-            src={school.logo.url}
-            alt={`${school.name} ロゴ`}
-            fill
-            className="object-contain object-left"
-            sizes="144px"
-            priority
-          />
-        </div>
+        {school.logo?.url && (
+          <div className="relative h-12 w-36 shrink-0">
+            <Image
+              src={school.logo.url}
+              alt={`${school.name} ロゴ`}
+              fill
+              className="object-contain object-left"
+              sizes="144px"
+              priority
+            />
+          </div>
+        )}
         <div className="min-w-0">
           <h1 className="text-xl font-black text-gray-800">{school.name}</h1>
           <p className="text-sm text-gray-600">{school.catchphrase}</p>

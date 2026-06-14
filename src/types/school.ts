@@ -51,7 +51,7 @@ export interface School {
   id: string;
   name: string;
   slug: string;
-  logo: MicroCMSImage;
+  logo?: MicroCMSImage;
   officialUrl: string;
   affiliateUrl: string;
   catchphrase: string;
