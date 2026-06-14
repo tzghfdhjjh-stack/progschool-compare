@@ -1,17 +1,20 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SAMPLE_SCHOOLS } from '@/lib/sample-data';
+import { fetchSchools } from '@/lib/microcms';
 import { rankSchools } from '@/lib/scoring';
 import { RankingCard } from '@/components/ranking/RankingCard';
 import { generateItemListLD } from '@/lib/structured-data';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'プログラミングスクール比較Lab | 全スクールを独自スコアで比較',
   description: '未経験からエンジニアへ。料金・カリキュラム・転職率・サポートを独自スコアで徹底比較。透明な採点基準でスクール選びをサポートします。',
 };
 
-export default function TopPage() {
-  const ranked = rankSchools(SAMPLE_SCHOOLS).slice(0, 3);
+export default async function TopPage() {
+  const schools = await fetchSchools({ limit: 20, orders: '-curriculumScore' });
+  const ranked = rankSchools(schools).slice(0, 3);
   const itemListLD = generateItemListLD(ranked, 'おすすめプログラミングスクールランキング');
 
   return (

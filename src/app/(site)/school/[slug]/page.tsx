@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { SAMPLE_SCHOOLS } from '@/lib/sample-data';
+import { getAllSchoolSlugs, fetchSchoolBySlug } from '@/lib/microcms';
 import { calcOverallScore, SCORING_WEIGHTS } from '@/lib/scoring';
 import { AffiliateCTA } from '@/components/common/AffiliateCTA';
 import { StarRating } from '@/components/common/StarRating';
@@ -10,8 +10,9 @@ import { UpdateBadge } from '@/components/common/UpdateBadge';
 import { ScoreBar } from '@/components/ranking/ScoreBar';
 import { generateProductLD, generateBreadcrumbLD } from '@/lib/structured-data';
 
-export function generateStaticParams() {
-  return SAMPLE_SCHOOLS.map((s) => ({ slug: s.slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllSchoolSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -20,7 +21,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const school = SAMPLE_SCHOOLS.find((s) => s.slug === slug);
+  const school = await fetchSchoolBySlug(slug);
   if (!school) return {};
   return {
     title: `${school.name}の評判・料金・口コミ【独自採点】`,
@@ -38,7 +39,7 @@ export default async function SchoolDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const school = SAMPLE_SCHOOLS.find((s) => s.slug === slug);
+  const school = await fetchSchoolBySlug(slug);
   if (!school) notFound();
 
   const score = calcOverallScore(school.reviewScore);

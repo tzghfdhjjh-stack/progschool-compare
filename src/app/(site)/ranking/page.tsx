@@ -1,18 +1,21 @@
 import type { Metadata } from 'next';
-import { SAMPLE_SCHOOLS } from '@/lib/sample-data';
+import { fetchSchools } from '@/lib/microcms';
 import { rankSchools } from '@/lib/scoring';
 import { RankingCard } from '@/components/ranking/RankingCard';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { UpdateBadge } from '@/components/common/UpdateBadge';
 import { generateItemListLD, generateBreadcrumbLD } from '@/lib/structured-data';
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'プログラミングスクール総合ランキング2026年版',
   description: '未経験からエンジニアへ。カリキュラム・料金・転職率・サポートの4軸で評価した総合ランキング。',
 };
 
-export default function RankingPage() {
-  const ranked = rankSchools(SAMPLE_SCHOOLS);
+export default async function RankingPage() {
+  const schools = await fetchSchools({ limit: 20, orders: '-curriculumScore' });
+  const ranked = rankSchools(schools);
   const itemListLD = generateItemListLD(ranked, 'プログラミングスクール総合ランキング2026年版');
   const breadcrumbLD = generateBreadcrumbLD([
     { name: 'トップ', url: '/' },
