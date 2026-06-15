@@ -6,7 +6,7 @@ import { Breadcrumb } from '@/components/common/Breadcrumb';
 import { UpdateBadge } from '@/components/common/UpdateBadge';
 import { generateItemListLD, generateBreadcrumbLD } from '@/lib/structured-data';
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'プログラミングスクール総合ランキング2026年版',

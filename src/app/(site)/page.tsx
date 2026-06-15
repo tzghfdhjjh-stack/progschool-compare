@@ -5,7 +5,7 @@ import { rankSchools } from '@/lib/scoring';
 import { RankingCard } from '@/components/ranking/RankingCard';
 import { generateItemListLD } from '@/lib/structured-data';
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export const metadata: Metadata = {
   title: 'プログラミングスクール比較Lab | 全スクールを独自スコアで比較',
