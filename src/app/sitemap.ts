@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { SAMPLE_SCHOOLS } from '@/lib/sample-data';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://progschool-compare.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://progschool-compare.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

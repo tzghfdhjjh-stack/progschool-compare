@@ -11,7 +11,7 @@ const notoSansJP = Noto_Sans_JP({
 export const metadata: Metadata = {
   title: 'プログラミングスクール比較Lab',
   description: '未経験からエンジニアへ。料金・カリキュラム・転職率を独自スコアで比較。全スクールを透明な採点基準で評価します。',
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://progschool-compare.vercel.app'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://progschool-compare.vercel.app'),
 };
 
 export default function RootLayout({

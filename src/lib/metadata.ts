@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://progschool-compare.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://progschool-compare.vercel.app';
 const SITE_NAME = 'プログラミングスクール比較Lab';
 
 interface MetaOptions {

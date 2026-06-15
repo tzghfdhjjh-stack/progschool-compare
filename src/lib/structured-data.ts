@@ -1,7 +1,7 @@
 import type { School } from '@/types/school';
 import { formatScore } from './scoring';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://progschool-compare.vercel.app';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://progschool-compare.vercel.app';
 
 export function generateProductLD(school: School) {
   return {
