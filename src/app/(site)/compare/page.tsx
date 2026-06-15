@@ -4,7 +4,7 @@ import { rankSchools } from '@/lib/scoring';
 import { CompareTable } from '@/components/comparison/CompareTable';
 import { Breadcrumb } from '@/components/common/Breadcrumb';
 
-export const revalidate = 0;
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'プログラミングスクール比較表 | 目的・レベル・形式で絞り込み',
